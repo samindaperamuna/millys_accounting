@@ -17,11 +17,12 @@ class Ui_Form(object):
         self.pushButton = QtWidgets.QPushButton(window)
         self.pushButton.setGeometry(QtCore.QRect(100, 110, 75, 31))
         self.pushButton.setObjectName("pushButton")
-        self.pushButton.click.connect(self.on_new_clicked)
+        self.pushButton.clicked.connect(self.on_new_clicked)
 
         self.pushButton_2 = QtWidgets.QPushButton(window)
         self.pushButton_2.setGeometry(QtCore.QRect(190, 110, 75, 31))
         self.pushButton_2.setObjectName("pushButton_2")
+
         self.label = QtWidgets.QLabel(window)
         self.label.setGeometry(QtCore.QRect(30, 30, 191, 51))
         self.label.setObjectName("label")
@@ -39,5 +40,5 @@ class Ui_Form(object):
     def on_new_clicked(self):
         main_window = QtWidgets.QMainWindow(parent=self.parent, flags=Qt.Window)
         new_window = Ui_Form()
-        new_window.setupUi(main_window)
+        new_window.setupUi(self.parent, main_window)
         main_window.show()
