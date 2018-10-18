@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>MainWindow</class>
+    <widget class="QMainWindow" name="MainWindow">
+        <property name="windowModality">
+            <enum>Qt::ApplicationModal</enum>
+        </property>
+        <property name="enabled">
+            <bool>true</bool>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>520</width>
+                <height>630</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>MainWindow</string>
+        </property>
+        <widget class="QWidget" name="centralWidget">
+            <widget class="QWidget" name="horizontalLayoutWidget">
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>520</y>
+                        <width>500</width>
+                        <height>48</height>
+                    </rect>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,0">
+                    <property name="spacing">
+                        <number>10</number>
+                    </property>
+                    <property name="sizeConstraint">
+                        <enum>QLayout::SetDefaultConstraint</enum>
+                    </property>
+                    <property name="leftMargin">
+                        <number>10</number>
+                    </property>
+                    <property name="topMargin">
+                        <number>10</number>
+                    </property>
+                    <property name="rightMargin">
+                        <number>10</number>
+                    </property>
+                    <property name="bottomMargin">
+                        <number>10</number>
+                    </property>
+                    <item>
+                        <widget class="QPushButton" name="invoiceButton">
+                            <property name="text">
+                                <string>Invoice</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="billsButton">
+                            <property name="text">
+                                <string>Bills</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="journalButton">
+                            <property name="text">
+                                <string>Journal</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="bankButton">
+                            <property name="text">
+                                <string>Bank</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="reportButton">
+                            <property name="text">
+                                <string>Report</string>
+                            </property>
+                        </widget>
+                    </item>
+                </layout>
+            </widget>
+            <widget class="QLabel" name="logoLabel">
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>10</y>
+                        <width>500</width>
+                        <height>500</height>
+                    </rect>
+                </property>
+                <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="text">
+                    <string/>
+                </property>
+                <property name="textFormat">
+                    <enum>Qt::RichText</enum>
+                </property>
+                <property name="pixmap">
+                    <pixmap>resources/images/logo_small.jpg</pixmap>
+                </property>
+                <property name="scaledContents">
+                    <bool>true</bool>
+                </property>
+                <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                </property>
+            </widget>
+        </widget>
+        <widget class="QMenuBar" name="mainMenuBar">
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>520</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <widget class="QMenu" name="menuFile">
+                <property name="title">
+                    <string>File</string>
+                </property>
+                <addaction name="actionNew"/>
+                <addaction name="actionOpen"/>
+                <addaction name="separator"/>
+                <addaction name="actionBackUp"/>
+                <addaction name="actionSingleUser"/>
+                <addaction name="actionUtilities"/>
+                <addaction name="separator"/>
+                <addaction name="actionLogoff"/>
+                <addaction name="actionExit"/>
+            </widget>
+            <widget class="QMenu" name="menuCompany">
+                <property name="title">
+                    <string>Company</string>
+                </property>
+                <addaction name="actionMyCompany"/>
+                <addaction name="actionSnapshot"/>
+                <addaction name="separator"/>
+                <addaction name="actionChartOfAccounts"/>
+                <addaction name="actionClosingDate"/>
+                <addaction name="actionPlanBudget"/>
+                <addaction name="actionEntity"/>
+                <addaction name="actionItemList"/>
+            </widget>
+            <widget class="QMenu" name="menuAccountant">
+                <property name="title">
+                    <string>Accountant</string>
+                </property>
+                <addaction name="actionJournal"/>
+                <addaction name="actionReconcile"/>
+                <addaction name="actionUsers"/>
+                <addaction name="separator"/>
+                <addaction name="actionFixedAsset"/>
+                <addaction name="actionInvestment"/>
+                <addaction name="actionLoans"/>
+            </widget>
+            <widget class="QMenu" name="menuCustomer">
+                <property name="title">
+                    <string>Customer</string>
+                </property>
+                <addaction name="actionCustomerCenter"/>
+                <addaction name="separator"/>
+                <addaction name="actionCreateEstimate"/>
+                <addaction name="actionCreateInvoice"/>
+                <addaction name="actionCreateSalesReceipt"/>
+                <addaction name="actionReceive_Payment"/>
+                <addaction name="actionCreditMemoRefund"/>
+            </widget>
+            <widget class="QMenu" name="menuVendor">
+                <property name="title">
+                    <string>Vendor</string>
+                </property>
+                <addaction name="actionVendorCenter"/>
+                <addaction name="separator"/>
+                <addaction name="actionEnterBills"/>
+                <addaction name="actionPayBills"/>
+            </widget>
+            <widget class="QMenu" name="menuBank">
+                <property name="title">
+                    <string>Bank</string>
+                </property>
+                <addaction name="actionWriteCheque"/>
+                <addaction name="actionMakeDeposit"/>
+                <addaction name="actionTransferFunds"/>
+                <addaction name="actionCreditCardCharges"/>
+                <addaction name="separator"/>
+            </widget>
+            <widget class="QMenu" name="menuReport">
+                <property name="title">
+                    <string>Report</string>
+                </property>
+                <widget class="QMenu" name="menuAccountsTaxes">
+                    <property name="title">
+                        <string>Accounts &amp; Taxes</string>
+                    </property>
+                    <addaction name="actionTrialBalance"/>
+                </widget>
+                <widget class="QMenu" name="menuFinancials">
+                    <property name="title">
+                        <string>Financials</string>
+                    </property>
+                    <addaction name="actionBalanceSheet"/>
+                    <addaction name="actionProfitAndLoss"/>
+                </widget>
+                <addaction name="menuFinancials"/>
+                <addaction name="separator"/>
+                <addaction name="actionARReport"/>
+                <addaction name="actionBank"/>
+                <addaction name="actionAPReport"/>
+                <addaction name="separator"/>
+                <addaction name="menuAccountsTaxes"/>
+                <addaction name="actionAuditTrail"/>
+            </widget>
+            <addaction name="menuFile"/>
+            <addaction name="menuCompany"/>
+            <addaction name="menuAccountant"/>
+            <addaction name="menuCustomer"/>
+            <addaction name="menuVendor"/>
+            <addaction name="menuBank"/>
+            <addaction name="menuReport"/>
+        </widget>
+        <widget class="QStatusBar" name="statusBar"/>
+        <action name="actionNew">
+            <property name="text">
+                <string>New</string>
+            </property>
+        </action>
+        <action name="actionOpen">
+            <property name="text">
+                <string>Open</string>
+            </property>
+        </action>
+        <action name="actionBackUp">
+            <property name="text">
+                <string>Back Up</string>
+            </property>
+            <property name="toolTip">
+                <string>Back Up</string>
+            </property>
+        </action>
+        <action name="actionSingleUser">
+            <property name="text">
+                <string>Single User</string>
+            </property>
+        </action>
+        <action name="actionUtilities">
+            <property name="text">
+                <string>Utilities</string>
+            </property>
+        </action>
+        <action name="actionLogoff">
+            <property name="text">
+                <string>Log Off</string>
+            </property>
+        </action>
+        <action name="actionExit">
+            <property name="text">
+                <string>Exit</string>
+            </property>
+        </action>
+        <action name="actionMyCompany">
+            <property name="text">
+                <string>My Company</string>
+            </property>
+        </action>
+        <action name="actionSnapshot">
+            <property name="text">
+                <string>Snapshot</string>
+            </property>
+        </action>
+        <action name="actionChartOfAccounts">
+            <property name="text">
+                <string>Charts of Accounts</string>
+            </property>
+        </action>
+        <action name="actionClosingDate">
+            <property name="text">
+                <string>Closing Date</string>
+            </property>
+        </action>
+        <action name="actionPlanBudget">
+            <property name="text">
+                <string>Plan/Budget</string>
+            </property>
+        </action>
+        <action name="actionUsers">
+            <property name="text">
+                <string>Users</string>
+            </property>
+        </action>
+        <action name="actionEntity">
+            <property name="text">
+                <string>Entity</string>
+            </property>
+        </action>
+        <action name="actionJournal">
+            <property name="text">
+                <string>Journal</string>
+            </property>
+        </action>
+        <action name="actionReconcile">
+            <property name="text">
+                <string>Reconcile</string>
+            </property>
+        </action>
+        <action name="actionItemList">
+            <property name="text">
+                <string>Item List</string>
+            </property>
+        </action>
+        <action name="actionCustomerCenter">
+            <property name="text">
+                <string>Customer Center</string>
+            </property>
+        </action>
+        <action name="actionCreateEstimate">
+            <property name="text">
+                <string>Estimate/Pro-Forma</string>
+            </property>
+        </action>
+        <action name="actionCreateInvoice">
+            <property name="text">
+                <string>Invoice</string>
+            </property>
+        </action>
+        <action name="actionCreateSalesReceipt">
+            <property name="text">
+                <string>Sales Receipt</string>
+            </property>
+        </action>
+        <action name="actionReceive_Payment">
+            <property name="text">
+                <string>Receive Payment</string>
+            </property>
+        </action>
+        <action name="actionCreditMemoRefund">
+            <property name="text">
+                <string>Credit Memo/Refund</string>
+            </property>
+        </action>
+        <action name="actionVendorCenter">
+            <property name="text">
+                <string>Vendor Center</string>
+            </property>
+        </action>
+        <action name="actionEnterBills">
+            <property name="text">
+                <string>Bills</string>
+            </property>
+        </action>
+        <action name="actionPayBills">
+            <property name="text">
+                <string>Pay Bills</string>
+            </property>
+        </action>
+        <action name="actionWriteCheque">
+            <property name="text">
+                <string>Write Cheque</string>
+            </property>
+        </action>
+        <action name="actionMakeDeposit">
+            <property name="text">
+                <string>Make Deposit</string>
+            </property>
+        </action>
+        <action name="actionTransferFunds">
+            <property name="text">
+                <string>Transfer</string>
+            </property>
+        </action>
+        <action name="actionCreditCardCharges">
+            <property name="text">
+                <string>Credit Card Charges</string>
+            </property>
+        </action>
+        <action name="actionFixedAsset">
+            <property name="text">
+                <string>Fixed Asset</string>
+            </property>
+        </action>
+        <action name="actionInvestment">
+            <property name="text">
+                <string>Investment</string>
+            </property>
+        </action>
+        <action name="actionLoans">
+            <property name="text">
+                <string>Loans</string>
+            </property>
+        </action>
+        <action name="actionARReport">
+            <property name="text">
+                <string>Receivables</string>
+            </property>
+        </action>
+        <action name="actionAPReport">
+            <property name="text">
+                <string>Bank</string>
+            </property>
+        </action>
+        <action name="actionBank">
+            <property name="text">
+                <string>Payables</string>
+            </property>
+        </action>
+        <action name="actionAuditTrail">
+            <property name="text">
+                <string>Audit Trail</string>
+            </property>
+        </action>
+        <action name="actionBalanceSheet">
+            <property name="text">
+                <string>Balance Sheet</string>
+            </property>
+        </action>
+        <action name="actionProfitAndLoss">
+            <property name="text">
+                <string>Profit and Loss</string>
+            </property>
+        </action>
+        <action name="actionTrialBalance">
+            <property name="text">
+                <string>Trial Balance</string>
+            </property>
+        </action>
+    </widget>
+    <resources/>
+    <connections>
+        <connection>
+            <sender>actionNew</sender>
+            <signal>triggered()</signal>
+            <receiver>MainWindow</receiver>
+            <slot>action_new_triggered()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>-1</x>
+                    <y>-1</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>259</x>
+                    <y>314</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>actionOpen</sender>
+            <signal>triggered()</signal>
+            <receiver>MainWindow</receiver>
+            <slot>action_open_triggered()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>-1</x>
+                    <y>-1</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>259</x>
+                    <y>314</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>actionExit</sender>
+            <signal>triggered()</signal>
+            <receiver>MainWindow</receiver>
+            <slot>action_exit_triggered()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>-1</x>
+                    <y>-1</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>259</x>
+                    <y>314</y>
+                </hint>
+            </hints>
+        </connection>
+    </connections>
+    <slots>
+        <slot>action_new_triggered()</slot>
+        <slot>action_open_triggered()</slot>
+        <slot>action_exit_triggered()</slot>
+    </slots>
+</ui>
