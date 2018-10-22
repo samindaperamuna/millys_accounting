@@ -4,6 +4,8 @@
       <w>financials</w>
       <w>forma</w>
       <w>payables</w>
+      <w>postgresql</w>
+      <w>tablename</w>
     </words>
   </dictionary>
 </component>

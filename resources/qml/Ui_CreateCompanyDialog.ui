@@ -279,6 +279,55 @@
             </layout>
         </widget>
     </widget>
+    <tabstops>
+        <tabstop>nameText</tabstop>
+        <tabstop>addressText</tabstop>
+        <tabstop>taxNumText</tabstop>
+        <tabstop>userText</tabstop>
+        <tabstop>passText</tabstop>
+        <tabstop>retypePassText</tabstop>
+        <tabstop>chartOfAccCheckBox</tabstop>
+        <tabstop>journalCheckBox</tabstop>
+        <tabstop>createButton</tabstop>
+        <tabstop>cancelButton</tabstop>
+    </tabstops>
     <resources/>
-    <connections/>
+    <connections>
+        <connection>
+            <sender>createButton</sender>
+            <signal>clicked()</signal>
+            <receiver>CreateCompanyDialog</receiver>
+            <slot>create_button_clicked()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>223</x>
+                    <y>560</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>217</x>
+                    <y>299</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>cancelButton</sender>
+            <signal>clicked()</signal>
+            <receiver>CreateCompanyDialog</receiver>
+            <slot>cancel_button_clicked()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>357</x>
+                    <y>560</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>217</x>
+                    <y>299</y>
+                </hint>
+            </hints>
+        </connection>
+    </connections>
+    <slots>
+        <slot>create_button_clicked()</slot>
+        <slot>cancel_button_clicked()</slot>
+    </slots>
 </ui>

@@ -8,7 +8,6 @@
 
 from PyQt5 import QtCore, QtWidgets
 
-
 class Ui_CreateCompanyDialog(object):
     def setupUi(self, CreateCompanyDialog):
         CreateCompanyDialog.setObjectName("CreateCompanyDialog")
@@ -89,7 +88,18 @@ class Ui_CreateCompanyDialog(object):
         self.horizontalLayout.addWidget(self.cancelButton)
 
         self.retranslateUi(CreateCompanyDialog)
+        self.createButton.clicked.connect(CreateCompanyDialog.create_button_clicked)
+        self.cancelButton.clicked.connect(CreateCompanyDialog.cancel_button_clicked)
         QtCore.QMetaObject.connectSlotsByName(CreateCompanyDialog)
+        CreateCompanyDialog.setTabOrder(self.nameText, self.addressText)
+        CreateCompanyDialog.setTabOrder(self.addressText, self.taxNumText)
+        CreateCompanyDialog.setTabOrder(self.taxNumText, self.userText)
+        CreateCompanyDialog.setTabOrder(self.userText, self.passText)
+        CreateCompanyDialog.setTabOrder(self.passText, self.retypePassText)
+        CreateCompanyDialog.setTabOrder(self.retypePassText, self.chartOfAccCheckBox)
+        CreateCompanyDialog.setTabOrder(self.chartOfAccCheckBox, self.journalCheckBox)
+        CreateCompanyDialog.setTabOrder(self.journalCheckBox, self.createButton)
+        CreateCompanyDialog.setTabOrder(self.createButton, self.cancelButton)
 
     def retranslateUi(self, CreateCompanyDialog):
         _translate = QtCore.QCoreApplication.translate
@@ -107,3 +117,4 @@ class Ui_CreateCompanyDialog(object):
         self.retypePassLabel.setText(_translate("CreateCompanyDialog", "Retype Password"))
         self.createButton.setText(_translate("CreateCompanyDialog", "Create"))
         self.cancelButton.setText(_translate("CreateCompanyDialog", "Cancel"))
+

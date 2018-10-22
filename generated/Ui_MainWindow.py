@@ -8,7 +8,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -252,7 +251,7 @@ class Ui_MainWindow(object):
         self.actionExit.setText(_translate("MainWindow", "Exit"))
         self.actionMyCompany.setText(_translate("MainWindow", "My Company"))
         self.actionSnapshot.setText(_translate("MainWindow", "Snapshot"))
-        self.actionChartOfAccounts.setText(_translate("MainWindow", "Charts of  Accounts"))
+        self.actionChartOfAccounts.setText(_translate("MainWindow", "Charts of Accounts"))
         self.actionClosingDate.setText(_translate("MainWindow", "Closing Date"))
         self.actionPlanBudget.setText(_translate("MainWindow", "Plan/Budget"))
         self.actionUsers.setText(_translate("MainWindow", "Users"))
@@ -283,3 +282,4 @@ class Ui_MainWindow(object):
         self.actionBalanceSheet.setText(_translate("MainWindow", "Balance Sheet"))
         self.actionProfitAndLoss.setText(_translate("MainWindow", "Profit and Loss"))
         self.actionTrialBalance.setText(_translate("MainWindow", "Trial Balance"))
+
