@@ -1,10 +1,9 @@
 from sqlalchemy import Integer, String, Column
-from sqlalchemy.ext.declarative import declarative_base
 
-base = declarative_base()
+from data.DBManager import Base
 
 
-class Company(base):
+class Company(Base):
     __tablename__ = "company"
 
     id = Column(Integer, primary_key=True)

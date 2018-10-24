@@ -1,8 +1,10 @@
 import logging
+from threading import Thread
 
 from PyQt5.QtWidgets import QDialog, QMessageBox
 
 from data.DBManager import DBManager
+from data.dao.CompanyDao import CompanyDao
 from generated.Ui_CreateCompanyDialog import Ui_CreateCompanyDialog
 
 
@@ -16,15 +18,23 @@ class CreateCompanyDialog(QDialog, Ui_CreateCompanyDialog):
         self.setFixedSize(self.size())
 
     def create_button_clicked(self):
-        logging.debug("DB creation initialized.")
-        self.init_database()
-        logging.debug("DB creation completed.")
+        logging.info("DB creation initialized.")
+        Thread(target=self.init_database).start()
+        logging.info("DB creation completed.")
+
+        self.close()
 
     def init_database(self):
+        """Create and initialize the database and add company information.
+        This method should be run on a thread for maximum efficiency."""
         if self.validate() is True:
             # Create the database.
             db_man = DBManager()
             db_man.create_database(self.nameText.text(), self.userText.text(), self.passText.text())
+
+            # Save the company info.
+            CompanyDao.create_company(self, self.nameText.text(), self.addressText.toPlainText(),
+                                      self.taxNumText.text())
         else:
             print("Invalid")
 
