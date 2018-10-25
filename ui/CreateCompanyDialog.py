@@ -20,9 +20,6 @@ class CreateCompanyDialog(QDialog, Ui_CreateCompanyDialog):
     def create_button_clicked(self):
         logging.info("DB creation initialized.")
         Thread(target=self.init_database).start()
-        logging.info("DB creation completed.")
-
-        self.close()
 
     def init_database(self):
         """Create and initialize the database and add company information.
@@ -30,41 +27,48 @@ class CreateCompanyDialog(QDialog, Ui_CreateCompanyDialog):
         if self.validate() is True:
             # Create the database.
             db_man = DBManager()
-            db_man.create_database(self.nameText.text(), self.userText.text(), self.passText.text())
-
-            # Save the company info.
-            CompanyDao.create_company(self, self.nameText.text(), self.addressText.toPlainText(),
-                                      self.taxNumText.text())
+            db_created = db_man.create_database(self.nameText.text(), self.userText.text(), self.passText.text())
+            if not db_created:
+                self.show_error_dialog("Database creation failed.")
+            else:
+                # Save the company info.
+                company_created = CompanyDao.create_company(self, self.nameText.text(), self.addressText.toPlainText(),
+                                                            self.taxNumText.text())
+                if company_created:
+                    self.show_info_dialog("Database created successfully.")
+                    self.close()
+                else:
+                    self.show_error_dialog("Couldn't save customer information.")
         else:
             print("Invalid")
 
     def validate(self):
         if self.nameText.text() is "":
-            self.show_missing_field_dialog("Please enter the company name.")
+            self.show_info_dialog("Please enter the company name.")
             self.nameText.setFocus()
             return False
         elif self.addressText.toPlainText() is "":
-            self.show_missing_field_dialog("Please enter the company address.")
+            self.show_info_dialog("Please enter the company address.")
             self.addressText.setFocus()
             return False
         elif self.taxNumText.text() is "":
-            self.show_missing_field_dialog("Please enter the tax number.")
+            self.show_info_dialog("Please enter the tax number.")
             self.taxNumText.setFocus()
             return False
         elif self.userText.text() is "":
-            self.show_missing_field_dialog("Please enter the database username.")
+            self.show_info_dialog("Please enter the database username.")
             self.userText.setFocus()
             return False
         elif self.passText.text() is "":
-            self.show_missing_field_dialog("Please enter a database password.")
+            self.show_info_dialog("Please enter a database password.")
             self.passText.setFocus()
             return False
         elif self.retypePassText.text() is "":
-            self.show_missing_field_dialog("Please retype the database password.")
+            self.show_info_dialog("Please retype the database password.")
             self.retypePassText.setFocus()
             return False
         elif self.passText.text() != self.retypePassText.text():
-            self.show_missing_field_dialog("Passwords do not match.")
+            self.show_info_dialog("Passwords do not match.")
             self.retypePassText.selectAll()
             self.retypePassText.setFocus()
             return False
@@ -72,11 +76,21 @@ class CreateCompanyDialog(QDialog, Ui_CreateCompanyDialog):
         return True
 
     @staticmethod
-    def show_missing_field_dialog(msg):
+    def show_info_dialog(msg):
         msg_box = QMessageBox()
         msg_box.setIcon(QMessageBox.Information)
         msg_box.setMaximumWidth(500)
-        msg_box.setWindowTitle("Missing Required Field")
+        msg_box.setWindowTitle("Information")
+        msg_box.setText(msg)
+
+        msg_box.exec()
+
+    @staticmethod
+    def show_error_dialog(msg):
+        msg_box = QMessageBox()
+        msg_box.setIcon(QMessageBox.Critical)
+        msg_box.setMaximumWidth(500)
+        msg_box.setWindowTitle("Error")
         msg_box.setText(msg)
 
         msg_box.exec()

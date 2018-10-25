@@ -56,13 +56,14 @@ class DBManager(object):
 
             # Generate session class.
             self.Session = sessionmaker(engine)
+            return True
         except Exception as e:
             logging.error("Couldn't create database: {0}".format(str(e)))
         finally:
             conn.execute("COMMIT")
 
             try:
-                if db_created and not user_assigned:
+                if db_created and not user_created:
                     # If user is not assigned after database assignment, drop the database.
                     conn.execute("DROP DATABASE {0}".format(safe_db_name))
                 elif user_created and not user_assigned:
@@ -73,3 +74,5 @@ class DBManager(object):
                 logging.error("Couldn't rollback database creation: {0}".format(str(e)))
             finally:
                 conn.close()
+
+        return False
