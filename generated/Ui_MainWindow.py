@@ -222,6 +222,7 @@ class Ui_MainWindow(object):
         self.actionNew.triggered.connect(MainWindow.action_new_triggered)
         self.actionOpen.triggered.connect(MainWindow.action_open_triggered)
         self.actionExit.triggered.connect(MainWindow.action_exit_triggered)
+        self.actionChartOfAccounts.triggered.connect(MainWindow.action_cof_triggered)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -251,7 +252,7 @@ class Ui_MainWindow(object):
         self.actionExit.setText(_translate("MainWindow", "Exit"))
         self.actionMyCompany.setText(_translate("MainWindow", "My Company"))
         self.actionSnapshot.setText(_translate("MainWindow", "Snapshot"))
-        self.actionChartOfAccounts.setText(_translate("MainWindow", "Charts of Accounts"))
+        self.actionChartOfAccounts.setText(_translate("MainWindow", "Chart of Accounts"))
         self.actionClosingDate.setText(_translate("MainWindow", "Closing Date"))
         self.actionPlanBudget.setText(_translate("MainWindow", "Plan/Budget"))
         self.actionUsers.setText(_translate("MainWindow", "Users"))

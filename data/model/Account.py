@@ -7,7 +7,7 @@ from data.DBManager import Base
 class Account(Base):
     __tablename__ = "account"
 
-    id = Column(Integer, primary_key=True)
+    number = Column(String(8), primary_key=True)
     name = Column(String(45), nullable=False)
     balance = Column(Float, default=0, nullable=False)
     typeId = Column(Integer, ForeignKey("account_type.id"))

@@ -12,7 +12,7 @@ Base = declarative_base()
 class DBManager(object):
     _instance = None
     _engine = None
-    _dbUrl = "postgresql://postgres:123@localhost"
+    _dbUrl = "postgresql://postgres:postgres@localhost"
 
     Session = None
 
@@ -76,3 +76,17 @@ class DBManager(object):
                 conn.close()
 
         return False
+
+    def list_databases(self):
+        conn = self._engine.connect()
+        conn.execute("COMMIT")
+        databases = []
+
+        try:
+            result = conn.execute("SELECT datname FROM pg_database WHERE datistemplate = false")
+            for name in result:
+                databases.append(name[0])
+        finally:
+            conn.close()
+
+        return databases

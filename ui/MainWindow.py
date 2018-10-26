@@ -1,7 +1,10 @@
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget, QMessageBox
 
 from generated.Ui_MainWindow import Ui_MainWindow
+from ui import OpenDialog
+from ui.COFDialog import COFDialog
 from ui.CreateCompanyDialog import CreateCompanyDialog
+from ui.OpenDialog import OpenDialog
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -34,10 +37,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             ui = CreateCompanyDialog(parent=self)
             ui.show()
 
-    @staticmethod
-    def action_open_triggered():
-        print("Action open triggered.")
+    def action_open_triggered(self):
+        ui = OpenDialog(parent=self)
+        ui.show()
 
     @staticmethod
     def action_exit_triggered():
         exit(0)
+
+    def action_cof_triggered(self):
+        ui = COFDialog(parent=self)
+        ui.show()

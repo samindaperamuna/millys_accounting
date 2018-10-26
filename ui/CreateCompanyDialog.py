@@ -32,7 +32,7 @@ class CreateCompanyDialog(QDialog, Ui_CreateCompanyDialog):
                 self.show_error_dialog("Database creation failed.")
             else:
                 # Save the company info.
-                company_created = CompanyDao.create_company(self, self.nameText.text(), self.addressText.toPlainText(),
+                company_created = CompanyDao.create_company(self.nameText.text(), self.addressText.toPlainText(),
                                                             self.taxNumText.text())
                 if company_created:
                     self.show_info_dialog("Database created successfully.")

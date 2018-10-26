@@ -10,7 +10,7 @@ class Transaction(Base):
     id = Column(Integer, primary_key=True)
     date = Column(Date, default=func.now(), nullable=False)
     description = Column(String(100))
-    accountId = Column(Integer, ForeignKey("account.id"))
+    accountNumber = Column(String, ForeignKey("account.number"))
     account = relationship("Account")
     refId = Column(Integer, ForeignKey("transaction_ref.id"))
     transactionRef = relationship("TransactionRef")
