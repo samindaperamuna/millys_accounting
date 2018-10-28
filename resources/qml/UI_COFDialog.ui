@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>COFDialog</class>
+    <widget class="QDialog" name="COFDialog">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>640</width>
+                <height>480</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>Chart of Accounts</string>
+        </property>
+        <widget class="QGroupBox" name="groupBox">
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>10</y>
+                    <width>620</width>
+                    <height>460</height>
+                </rect>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="title">
+                <string>Currently activated account types</string>
+            </property>
+            <widget class="QTableView" name="tableView">
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>35</y>
+                        <width>600</width>
+                        <height>375</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="QWidget" name="horizontalLayoutWidget">
+                <property name="geometry">
+                    <rect>
+                        <x>400</x>
+                        <y>410</y>
+                        <width>210</width>
+                        <height>50</height>
+                    </rect>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                    <property name="spacing">
+                        <number>10</number>
+                    </property>
+                    <property name="leftMargin">
+                        <number>10</number>
+                    </property>
+                    <property name="topMargin">
+                        <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                        <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                        <number>0</number>
+                    </property>
+                    <item>
+                        <widget class="QPushButton" name="addButton">
+                            <property name="text">
+                                <string>Add</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="deleteButton">
+                            <property name="text">
+                                <string>Delete</string>
+                            </property>
+                        </widget>
+                    </item>
+                </layout>
+            </widget>
+        </widget>
+    </widget>
+    <resources/>
+    <connections>
+        <connection>
+            <sender>addButton</sender>
+            <signal>clicked()</signal>
+            <receiver>COFDialog</receiver>
+            <slot>add_button_click()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>465</x>
+                    <y>445</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>320</x>
+                    <y>240</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>deleteButton</sender>
+            <signal>clicked()</signal>
+            <receiver>COFDialog</receiver>
+            <slot>delete_button_click()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>570</x>
+                    <y>445</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>320</x>
+                    <y>240</y>
+                </hint>
+            </hints>
+        </connection>
+    </connections>
+    <slots>
+        <slot>add_button_click()</slot>
+        <slot>delete_button_click()</slot>
+    </slots>
+</ui>
