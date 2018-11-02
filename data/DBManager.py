@@ -90,3 +90,39 @@ class DBManager(object):
             conn.close()
 
         return databases
+
+    @staticmethod
+    def check_user_permissions(db_name, db_usr, db_pwd):
+        privileges = []
+
+        try:
+            engine = sqlalchemy.create_engine("postgresql://{0}:{1}@localhost/{2}".format(db_usr, db_pwd, db_name))
+            conn = engine.connect()
+            conn.execute("COMMIT")
+
+            try:
+                result = conn.execute(
+                    "SELECT privilege_type FROM information_schema.table_privileges WHERE  grantee = '{0}'".format(
+                        db_usr))
+                for p in result:
+                    privileges.append(p)
+                # Print the privileges
+                logging.info("The user has following privileges: {0}".format(str(privileges)))
+                if len(privileges) > 0:
+                    return True
+            finally:
+                conn.close()
+        except Exception as e:
+            logging.error(str(e))
+
+        return False
+
+    def connect_database(self, db_name, db_usr, db_pwd):
+        try:
+            engine = sqlalchemy.create_engine("postgresql://{0}:{1}@localhost/{2}".format(db_usr, db_pwd, db_name))
+            self.Session = sessionmaker(engine)
+            return True
+        except Exception as e:
+            logging.error("Couldn't connect to database. {0}".format(str(e)))
+
+        return False
