@@ -1,6 +1,7 @@
 import logging
 
 import sqlalchemy
+from sqlalchemy.exc import ProgrammingError
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -28,6 +29,7 @@ class DBManager(object):
         # Generate Postgres safe identifiers.
         safe_db_name = StringUtil.pg_safe(db_name)
         safe_db_usr = StringUtil.pg_safe(db_usr)
+        result = None
 
         conn = self._engine.connect()
 
@@ -56,9 +58,12 @@ class DBManager(object):
 
             # Generate session class.
             self.Session = sessionmaker(engine)
-            return True
-        except Exception as e:
-            logging.error("Couldn't create database: {0}".format(str(e)))
+            result = "Database created successfully."
+            logging.info(result)
+            return True, result
+        except ProgrammingError as e:
+            result = "Couldn't create database: {0}".format(e.orig.args[0])
+            logging.error(result)
         finally:
             conn.execute("COMMIT")
 
@@ -75,7 +80,7 @@ class DBManager(object):
             finally:
                 conn.close()
 
-        return False
+        return False, result
 
     def list_databases(self):
         conn = self._engine.connect()
@@ -118,11 +123,15 @@ class DBManager(object):
         return False
 
     def connect_database(self, db_name, db_usr, db_pwd):
+        result = None
+
         try:
             engine = sqlalchemy.create_engine("postgresql://{0}:{1}@localhost/{2}".format(db_usr, db_pwd, db_name))
             self.Session = sessionmaker(engine)
-            return True
-        except Exception as e:
-            logging.error("Couldn't connect to database. {0}".format(str(e)))
+            result = "Successfully connected to the database."
+            return True, result
+        except ProgrammingError as e:
+            result = "Couldn't connect to database. {0}".format(e.orig.args[0])
+            logging.error(result)
 
-        return False
+        return False, result

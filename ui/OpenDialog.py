@@ -25,49 +25,32 @@ class OpenDialog(QDialog, Ui_OpenDialog):
             pwd = self.passwordText.text()
 
             if not DBManager.check_user_permissions(db_name, user, pwd):
-                self.show_error_dialog("Invalid username password combination.")
+                QMessageBox.critical(self, "Invalid Credentials", "Invalid username password combination.",
+                                     QMessageBox.Ok, QMessageBox.Ok)
             else:
-                if DBManager().connect_database(db_name, user, pwd):
-                    self.show_info_dialog("Connected to the database.")
+                is_success, result = DBManager().connect_database(db_name, user, pwd)
+                if is_success:
+                    QMessageBox.information(self, "Connection Success", result, QMessageBox.Ok, QMessageBox.Ok)
                     self.close()
                 else:
-                    self.show_error_dialog("Couldn't connect to the database.")
+                    QMessageBox.critical(self, "Connection Failed", result, QMessageBox.Ok, QMessageBox.Ok)
 
     def cancel_button_click(self):
         self.close()
 
     def validate(self):
         if len(self.dbList.selectedItems()) < 1:
-            self.show_info_dialog("Please select a database to proceed")
+            QMessageBox.critical(self, "Invalid Database", "Please select a database to proceed", QMessageBox.Ok,
+                                 QMessageBox.Ok)
             self.dbList.setFocus()
             return False
         elif self.usernameText.text() is "":
-            self.show_info_dialog("Please enter a username")
+            QMessageBox.critical(self, "Invalid Username", "Please enter a username", QMessageBox.Ok, QMessageBox.Ok)
             self.usernameText.setFocus()
             return False
         elif self.passwordText.text() is "":
-            self.show_info_dialog("Please enter a password")
+            QMessageBox.critical(self, "Invalid Password", "Please enter a password", QMessageBox.Ok, QMessageBox.Ok)
             self.passwordText.setFocus()
             return False
 
         return True
-
-    @staticmethod
-    def show_info_dialog(msg):
-        msg_box = QMessageBox()
-        msg_box.setIcon(QMessageBox.Information)
-        msg_box.setMaximumWidth(500)
-        msg_box.setWindowTitle("Information")
-        msg_box.setText(msg)
-
-        msg_box.exec()
-
-    @staticmethod
-    def show_error_dialog(msg):
-        msg_box = QMessageBox()
-        msg_box.setIcon(QMessageBox.Critical)
-        msg_box.setMaximumWidth(500)
-        msg_box.setWindowTitle("Error")
-        msg_box.setText(msg)
-
-        msg_box.exec()

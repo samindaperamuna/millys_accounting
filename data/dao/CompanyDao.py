@@ -3,20 +3,18 @@ import logging
 from sqlalchemy.exc import ProgrammingError
 
 from data.DBManager import DBManager
-from data.model.Company import Company
 
 
 class CompanyDao:
     """This class contains the company data manipulation methods."""
 
     @staticmethod
-    def create_company(name, address, tax_number):
+    def create_company(company):
         """Create a company record."""
         db = DBManager()
         if db.Session is not None:
             try:
                 session = db.Session()
-                company = Company(name=name, address=address, taxNumber=tax_number)
                 session.add(company)
                 session.commit()
                 return True
